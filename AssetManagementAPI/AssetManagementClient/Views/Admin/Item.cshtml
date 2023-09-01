@@ -1,0 +1,179 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutDashboardAdmin.cshtml";
+}
+<!-- Halaman-->
+<div class="page-wrapper">
+    <div class="p-3">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-7 align-self-center">
+                    <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Asset Management</h3>
+                    <div class="d-flex align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Menu</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <a href="#">Item</a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button Add Item -->
+        <!-- Data Table-->
+        <div class="container-fluid mt-5">
+            <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#addNewItem" data-placement="top" title="Add New Item"><i class="fas fa-plus"></i></a>
+            <p></p>
+            <table id="tabledataitem" class="display table table-striped table-bordered" style="width:100%">
+                <thead class="thead-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>ItemId</th>
+                        <th>Available Item</th>
+                        <th>Category</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>ItemId</th>
+                        <th>Available Item</th>
+                        <th>Category</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Add Item-->
+<div class="modal fade" id="addNewItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddNewItem">New Item</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false" name="formAddNewItem" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="name">Name Item</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name" required>
+                        <div class="valid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text" class="form-control" id="quantity" placeholder="Quantity" required>
+                        <div class="valid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label for="categoryId">Category</label>
+                            <select class="form-control" id="categoryId">
+                                <option hidden>Choose</option>
+                                <option value="1">Electronic</option>
+                                <option value="2">Stationary</option>
+                                <option value="3">Vehicle</option>
+                                <option value="4">Building</option>
+                            </select>
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" onclick="AddNewItem()">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Add Item -->
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModalItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Item</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="btnCloseEditItem"></button>
+            </div>
+            <div class="modal-body">
+                <form  onsubmit="return false" name="formEditItem" class="needs-validation" novalidate>
+
+                    <div class="form-group" hidden>
+                        <label for="idE">Name Item</label>
+                        <input type="text" class="form-control" id="idE" required>
+                        <div class="valid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="nameE">Name Item</label>
+                        <input type="text" class="form-control" id="nameE" required>
+                        <div class="valid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityE">Quantity</label>
+                        <input type="text" class="form-control" id="quantityE" required>
+                        <div class="valid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label for="categoryIdE">Category</label>
+                            <select class="form-control" id="categoryIdE">
+                                <option hidden>Choose</option>
+                                <option value="1">Electronic</option>
+                                <option value="2">Stationary</option>
+                                <option value="3">Vehicle</option>
+                                <option value="4">Building</option>
+                            </select>
+                        </div>
+                        <div class="invalid-feedback">
+                        </div>
+                    </div>
+
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" id="editUser">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
